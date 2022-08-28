@@ -30,7 +30,7 @@ class MasterApi extends SocketBase {
 			$portNumber = (($portNumber & 0xFF) << 8) + ($portNumber >> 8);
 
             		$servers[] = "$firstOctet.$secondOctet.$thirdOctet.$fourthOctet:$portNumber";
-        		} while($this->contentData->remaining() > 0);
+        	} while($this->contentData->remaining() > 0);
 		array_shift($servers);
 		array_pop($servers);
 		return $servers;
