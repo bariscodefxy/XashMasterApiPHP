@@ -22,17 +22,17 @@ class MasterApi extends SocketBase {
 		$byteBuffer = ByteBuffer::wrap($read);
 		$this->contentData = $byteBuffer;
 		do {
-            $firstOctet = $this->contentData->getByte();
-            $secondOctet = $this->contentData->getByte();
-            $thirdOctet = $this->contentData->getByte();
-            $fourthOctet = $this->contentData->getByte();
-            $portNumber = $this->contentData->getShort();
-            $portNumber = (($portNumber & 0xFF) << 8) + ($portNumber >> 8);
+            		$firstOctet = $this->contentData->getByte();
+            		$secondOctet = $this->contentData->getByte();
+			$thirdOctet = $this->contentData->getByte();
+			$fourthOctet = $this->contentData->getByte();
+			$portNumber = $this->contentData->getShort();
+			$portNumber = (($portNumber & 0xFF) << 8) + ($portNumber >> 8);
 
-            $servers[] = "$firstOctet.$secondOctet.$thirdOctet.$fourthOctet:$portNumber";
-        } while($this->contentData->remaining() > 0);
-        array_shift($servers);
-        array_pop($servers);
+            		$servers[] = "$firstOctet.$secondOctet.$thirdOctet.$fourthOctet:$portNumber";
+        		} while($this->contentData->remaining() > 0);
+		array_shift($servers);
+		array_pop($servers);
 		return $servers;
 	}
 
